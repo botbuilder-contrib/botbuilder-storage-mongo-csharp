@@ -15,10 +15,13 @@ jobs:
     - uses: actions/setup-dotnet@v1
       with:
         dotnet-version: '5.0.x'
-    
-    - name: Build
-      run: dotnet build
+        ref: ${{ github.ref }}
 
     - name: Test
       run: dotnet test
-      
+
+    - name: Build Release
+      run: dotnet build --configuration Release --version-suffix ${{github.ref}}
+    
+    - name: Package
+      run: dotnet pack --configuration Release .\src\BotBuilder.Storage.MongoDB\BotBuilder.Storage.MongoDB.csproj
