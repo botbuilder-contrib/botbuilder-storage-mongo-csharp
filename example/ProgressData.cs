@@ -1,11 +1,22 @@
-﻿namespace StateManagementBot
+﻿using System;
+using System.Linq;
+
+namespace StateManagementBot
 {
     public class ProgressData
     {
-        public string Timestamp { get; set; }
+        public Progress Current { get; set; }
 
-        public string ChannelId { get; set; }
+        public bool AdvanceIf(Func<bool> condition)
+        {
+            if (!condition()) { return false; }
+            
+            var max = Enum.GetValues(typeof(Progress)).Cast<int>().Max();
 
-        public Progress Progress { get; set;}
+            if ((int)Current == max) { return false; }
+
+            Current = (Progress)((int)Current++);
+            return true;
+        }
     }
 }

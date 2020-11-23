@@ -1,16 +1,14 @@
-using System;
 
 namespace StateManagementBot
 {
-    public class Marklar
+    public class Marklar<T> 
     {
-        public Marklar(string name = "Chip")
+        public Marklar(T value )
         {
-            Name = name;
-            Stamp = DateTimeOffset.Now;
+            Value = value;
         }
-
-        public DateTimeOffset Stamp { get; set; }
-        public string Name { get; set; }
+        public T Value { get; set; }
     }
+
+
 }

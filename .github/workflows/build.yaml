@@ -25,3 +25,9 @@ jobs:
     
     - name: Package
       run: dotnet pack --configuration Release ./src/BotBuilder.Storage.MongoDB/BotBuilder.Storage.MongoDB.csproj
+
+    - name: Archive Nuget Artifact
+      uses: actions/upload-artifact@v2
+      with:
+        name: botbuilder-storage-mongodb
+        path: ./src/BotBuilder.Storage.MongoDB/bin/Release/*.nupkg
