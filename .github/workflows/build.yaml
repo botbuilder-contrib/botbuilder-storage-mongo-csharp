@@ -21,7 +21,7 @@ jobs:
       run: dotnet test
 
     - name: Build Release
-      run: dotnet build --configuration Release --version-suffix ${{github.ref}}
+      run: dotnet build --configuration Release --version-suffix ${GITHUB_SHA::8}
     
     - name: Package
       run: dotnet pack --configuration Release .\src\BotBuilder.Storage.MongoDB\BotBuilder.Storage.MongoDB.csproj
